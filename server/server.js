@@ -62,3 +62,6 @@ connectDB().then(() => {
     );
   });
 });
+
+// Removed this from package.json
+// "concurrently \"node dev-mongo\" \"nodemon server.js\""

@@ -1,5 +1,7 @@
 {
-  "proxy": "http://localhost:2121/",
+  "options" : {
+    "proxy": "http://localhost:2121/"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
