@@ -111,7 +111,7 @@ const App = () => {
     <div className="">
       <NavBar />
 
-      <main className="mx-[10%] text-center flex flex-col justify-center">
+      <main className="mx-[10%] text-center flex flex-col justify-center items-center">
         <Layout />
 
         {/* <Routes>
@@ -120,20 +120,24 @@ const App = () => {
           <Route path="two" element={<FeatureTwo />}></Route>
         </Routes> */}
 
-        <div className="mx-[20%] mt-10 px-[5%] border-2">
-          <div className="mt-10 overflow-auto">
-            <label className="float-left">Focus time:</label>
+        <div className="w-1/2 my-10 px-[5%] border-2 rounded-lg">
+          <div className="my-5 flex flex-col justify-around items-center h-48">
+            <label className="">Focus time:</label>
             <input type="range" min="1" max="20" value={countdownTime} onChange={(e) => setCountdownTime(parseInt(e.currentTarget.value))} className="border-2 float-right" />
+            <button className="rounded bg-cyan-200 py-2 px-2" onClick={onSet}>Set focus time</button>
           </div>
-          <button className="my-10" onClick={onSet}>Set focus time</button>
+          
         </div>
 
-        <div className="card">
-        <div className="timer">
+        <div className="flex flex-col justify-around items-center w-2/5">
+        <div className="text-2xl rounded flex justify-center bg-gray-200 w-full ">
           <span>{minutes}</span>:<span>{seconds}</span>
         </div>
-        <button onClick={onStart}>Start</button>
-        <button onClick={onStop}>Stop</button>
+        <div className="w-1/2 my-5 flex justify-around ">
+          <button className="rounded bg-green-200 py-2 px-2" onClick={onStart}>Start</button>
+          <button className="rounded bg-red-300 py-2 px-2" onClick={onStop}>Stop</button>
+        </div>
+        
       </div>
       <p>You will receive a notification if you start focusing on something else or when the time is up</p>
       </main>
