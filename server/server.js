@@ -6,17 +6,22 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const flash = require("express-flash");
 const connectDB = require("./config/database");
+const morgan = require("morgan");
+const passport = require("passport");
 
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
-const examplesRoutes = require("./routes/examples");
+const authRoutes = require("./routes/auth");
 
 // Enable CORS for client origin only
-const cors = require('cors')
+const cors = require('cors');
 const corsOptions = {
    origin : ['http://localhost:3000', 'https://localhost:3000'],
 }
 app.use(cors(corsOptions))
+
+//Logging
+app.use(morgan('dev'));
 
 //Body Parsing
 app.use(express.urlencoded({ extended: true }));
@@ -32,6 +37,13 @@ app.use(
   })
 );
 
+// Passport config
+require("./config/passport")(passport);
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Render React as View
 app.use(express.static(path.join(__dirname, "..", "client", "build")));
 
@@ -39,7 +51,7 @@ app.use(express.static(path.join(__dirname, "..", "client", "build")));
 app.use(flash());
 
 //Setup Routes For Which The Server Is Listening
-app.use("/examples", examplesRoutes);
+app.use("/auth", authRoutes);
 
 // 404 handler
 app.use((req, res) => {

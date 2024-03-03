@@ -8,7 +8,7 @@ export default function NavBar() {
         <nav className="flex justify-between space-x-32 py-6 border-b-2 border-black">
             <img src={icon} alt="logo" className="w-20 h-20" />
             <Link to="/" className={navLinkStyle + " ml-12"}>Home</Link>
-            <Link to="/one" className={navLinkStyle}>Login</Link>
+            <Link to="/auth" className={navLinkStyle}>Login</Link>
             {/* <Link to="/two" className={navLinkStyle}>Feature Two</Link> */}
         </nav>
     )
